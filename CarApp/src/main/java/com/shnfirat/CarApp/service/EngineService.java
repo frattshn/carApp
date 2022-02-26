@@ -1,17 +1,18 @@
-package com.shnfirat.CarApp.services;
+package com.shnfirat.CarApp.service;
 
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.shnfirat.CarApp.entities.Engine;
+import com.shnfirat.CarApp.exception.EngineNotFoundException;
+import com.shnfirat.CarApp.model.Engine;
 import com.shnfirat.CarApp.repository.IEngineRepository;
 
 @Service
 public class EngineService {
 	
-	private IEngineRepository engineRepository;
+	private final IEngineRepository engineRepository;
 
 	public EngineService(IEngineRepository engineRepository) {
 		this.engineRepository = engineRepository;
@@ -22,7 +23,7 @@ public class EngineService {
 	}
 
 	public Engine getOneEngineById(Long id) {
-		return engineRepository.findById(id).orElse(null);
+		return engineRepository.findById(id).orElseThrow(() -> new EngineNotFoundException("Engine not found with this id : " + id));
 	}
 
 	public Engine updateOneEngineById(Long id, Engine newEngine) {

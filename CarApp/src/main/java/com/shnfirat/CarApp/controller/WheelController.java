@@ -1,4 +1,4 @@
-package com.shnfirat.CarApp.controllers;
+package com.shnfirat.CarApp.controller;
 
 import java.util.List;
 
@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.shnfirat.CarApp.entities.Wheel;
-import com.shnfirat.CarApp.services.WheelService;
+import com.shnfirat.CarApp.model.Wheel;
+import com.shnfirat.CarApp.service.WheelService;
 
 @RestController
 @RequestMapping("/wheels")
 public class WheelController {
 
-	private WheelService wheelService;
+	private final WheelService wheelService;
 
 	public WheelController(WheelService wheelService) {
 		this.wheelService = wheelService;

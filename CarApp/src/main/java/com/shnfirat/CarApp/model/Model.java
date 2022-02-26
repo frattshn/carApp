@@ -1,4 +1,4 @@
-package com.shnfirat.CarApp.entities;
+package com.shnfirat.CarApp.model;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;

@@ -1,17 +1,18 @@
-package com.shnfirat.CarApp.services;
+package com.shnfirat.CarApp.service;
 
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.shnfirat.CarApp.entities.Model;
+import com.shnfirat.CarApp.exception.ModelNotFoundException;
+import com.shnfirat.CarApp.model.Model;
 import com.shnfirat.CarApp.repository.IModelRepository;
 
 @Service
 public class ModelService {
 	
-	private IModelRepository modelRepository;
+	private final IModelRepository modelRepository;
 	
 	public ModelService(IModelRepository modelRepository) {
 		this.modelRepository = modelRepository;
@@ -23,7 +24,7 @@ public class ModelService {
 	}
 
 	public Model getOneModelById(Long id) {
-		return modelRepository.findById(id).orElse(null);
+		return modelRepository.findById(id).orElseThrow(() -> new ModelNotFoundException("Model not found with this id : " + id));
 	}
 
 

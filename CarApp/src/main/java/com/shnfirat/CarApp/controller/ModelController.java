@@ -1,4 +1,4 @@
-package com.shnfirat.CarApp.controllers;
+package com.shnfirat.CarApp.controller;
 
 import java.util.List;
 
@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.shnfirat.CarApp.entities.Model;
-import com.shnfirat.CarApp.services.ModelService;
+import com.shnfirat.CarApp.model.Model;
+import com.shnfirat.CarApp.service.ModelService;
 
 @RestController
 @RequestMapping("/models")
 public class ModelController {
 
-	private ModelService modelService;
+	private final ModelService modelService;
 
 	public ModelController(ModelService modelService) {
 		this.modelService = modelService;

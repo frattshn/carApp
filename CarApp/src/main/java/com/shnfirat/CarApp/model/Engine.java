@@ -1,4 +1,4 @@
-package com.shnfirat.CarApp.entities;
+package com.shnfirat.CarApp.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,5 +22,5 @@ public class Engine {
 	
 	@Column(columnDefinition = "varchar(5)")
 	String enginePower;
-	
+
 }

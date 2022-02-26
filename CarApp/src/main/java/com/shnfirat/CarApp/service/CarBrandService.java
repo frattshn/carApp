@@ -1,17 +1,18 @@
-package com.shnfirat.CarApp.services;
+package com.shnfirat.CarApp.service;
 
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.shnfirat.CarApp.entities.CarBrand;
+import com.shnfirat.CarApp.exception.CarBrandNotFoundException;
+import com.shnfirat.CarApp.model.CarBrand;
 import com.shnfirat.CarApp.repository.ICarBrandRepository;
 
 @Service
 public class CarBrandService {
 
-	private ICarBrandRepository carBrandRepository;
+	private final ICarBrandRepository carBrandRepository;
 
 	public CarBrandService(ICarBrandRepository carBrandRepository) {
 		this.carBrandRepository = carBrandRepository;
@@ -22,7 +23,7 @@ public class CarBrandService {
 	}
 
 	public CarBrand getOneCarById(Long id) {
-		return carBrandRepository.findById(id).orElse(null);
+		return carBrandRepository.findById(id).orElseThrow(() -> new CarBrandNotFoundException("Car Brand not found with this id : " + id));
 	}
 
 	public void deleteOneCarById(Long id) {

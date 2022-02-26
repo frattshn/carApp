@@ -1,4 +1,4 @@
-package com.shnfirat.CarApp.controllers;
+package com.shnfirat.CarApp.controller;
 
 import java.util.List;
 
@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.shnfirat.CarApp.entities.Engine;
-import com.shnfirat.CarApp.services.EngineService;
+import com.shnfirat.CarApp.model.Engine;
+import com.shnfirat.CarApp.service.EngineService;
 
 @RestController
 @RequestMapping("/engines")
 public class EngineController {
 
-	private EngineService engineService;
+	private final EngineService engineService;
 
 	public EngineController(EngineService engineService) {
 		this.engineService = engineService;

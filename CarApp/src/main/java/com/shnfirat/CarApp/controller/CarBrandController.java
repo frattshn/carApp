@@ -1,4 +1,4 @@
-package com.shnfirat.CarApp.controllers;
+package com.shnfirat.CarApp.controller;
 
 import java.util.List;
 
@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.shnfirat.CarApp.entities.CarBrand;
-import com.shnfirat.CarApp.services.CarBrandService;
+import com.shnfirat.CarApp.model.CarBrand;
+import com.shnfirat.CarApp.service.CarBrandService;
 
 @RestController
 @RequestMapping("/cars")
 public class CarBrandController {
 	
-	private CarBrandService carBrandService;
+	private final CarBrandService carBrandService;
 
 	public CarBrandController(CarBrandService carBrandService) {
 		this.carBrandService = carBrandService;

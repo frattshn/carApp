@@ -1,17 +1,17 @@
-package com.shnfirat.CarApp.services;
+package com.shnfirat.CarApp.service;
 
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.shnfirat.CarApp.entities.Wheel;
+import com.shnfirat.CarApp.model.Wheel;
 import com.shnfirat.CarApp.repository.IWheelRepository;
 
 @Service
 public class WheelService {
 	
-	IWheelRepository wheelRepository;
+	private final IWheelRepository wheelRepository;
 	
 	public WheelService(IWheelRepository wheelRepository) {
 		this.wheelRepository = wheelRepository;
