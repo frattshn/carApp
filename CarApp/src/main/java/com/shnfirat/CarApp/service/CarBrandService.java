@@ -1,11 +1,11 @@
 package com.shnfirat.CarApp.service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 import com.shnfirat.CarApp.dto.CarBrandCreateDTO;
+import com.shnfirat.CarApp.dto.CarBrandUpdateDTO;
 import com.shnfirat.CarApp.dto.CarBrandViewDTO;
 import com.shnfirat.CarApp.exception.CarBrandNotFoundException;
 import com.shnfirat.CarApp.model.CarBrand;
@@ -33,18 +33,13 @@ public class CarBrandService {
 		carBrandRepository.deleteById(id);
 	}
 
-	public CarBrand updateOneUserById(Long id, CarBrand newCarBrand) {
-		Optional<CarBrand> car = carBrandRepository.findById(id);
-		if(car.isPresent()) {
-			CarBrand foundCar = car.get();
-			foundCar.setBrandName(newCarBrand.getBrandName());
-			foundCar.setCountry(newCarBrand.getCountry());
-			carBrandRepository.save(foundCar);
-			return foundCar;
-		}else {
-			//exception
-			return null;
-		}
+	public CarBrandViewDTO updateOneUserById(Long id, CarBrandUpdateDTO carBrandUpdateDTO) {
+		final CarBrand carBrand = carBrandRepository.findById(id).orElseThrow(() -> new CarBrandNotFoundException("Car Brand Not Found!"));
+		carBrand.setBrandName(carBrandUpdateDTO.getBrandName());
+		carBrand.setCountry(carBrandUpdateDTO.getCountry());
+		
+		final CarBrand updatedCarBrand = carBrandRepository.save(carBrand);
+		return CarBrandViewDTO.of(updatedCarBrand);
 	}
 	
 	public CarBrandViewDTO addOneCar(CarBrandCreateDTO carBrandCreateDTO) {

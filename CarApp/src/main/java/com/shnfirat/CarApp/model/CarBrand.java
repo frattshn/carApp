@@ -7,9 +7,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@NoArgsConstructor
 @Table(name = "CarBrand")
 public class CarBrand {
 	
@@ -17,9 +19,9 @@ public class CarBrand {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Long id;
 	
-	String brandName;
+	private String brandName;
 	
-	String country;
+	private String country;
 
 	public CarBrand(String brandName, String country) {
 		this.brandName = brandName;

@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.shnfirat.CarApp.dto.CarBrandCreateDTO;
+import com.shnfirat.CarApp.dto.CarBrandUpdateDTO;
 import com.shnfirat.CarApp.dto.CarBrandViewDTO;
-import com.shnfirat.CarApp.model.CarBrand;
 import com.shnfirat.CarApp.service.CarBrandService;
 
 @RestController
@@ -37,8 +37,8 @@ public class CarBrandController {
 	}
 	
 	@PutMapping("/{id}")
-	public CarBrand updateOneUserById(@PathVariable Long id, @RequestBody CarBrand newCarBrand) {
-		return carBrandService.updateOneUserById(id, newCarBrand);
+	public CarBrandViewDTO updateOneUserById(@PathVariable Long id, @RequestBody CarBrandUpdateDTO carBrandUpdateDTO) {
+		return carBrandService.updateOneUserById(id, carBrandUpdateDTO);
 	}
 	
 	@DeleteMapping("/{id}")
