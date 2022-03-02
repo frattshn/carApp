@@ -2,9 +2,11 @@ package com.shnfirat.CarApp.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
-
+import com.shnfirat.CarApp.dto.CarBrandCreateDTO;
+import com.shnfirat.CarApp.dto.CarBrandViewDTO;
 import com.shnfirat.CarApp.exception.CarBrandNotFoundException;
 import com.shnfirat.CarApp.model.CarBrand;
 import com.shnfirat.CarApp.repository.ICarBrandRepository;
@@ -18,12 +20,13 @@ public class CarBrandService {
 		this.carBrandRepository = carBrandRepository;
 	}
 
-	public List<CarBrand> getAllCars() {
-		return carBrandRepository.findAll();
+	public List<CarBrandViewDTO> getAllCars() {
+		return carBrandRepository.findAll().stream().map(CarBrandViewDTO::of).collect(Collectors.toList());
 	}
 
-	public CarBrand getOneCarById(Long id) {
-		return carBrandRepository.findById(id).orElseThrow(() -> new CarBrandNotFoundException("Car Brand not found with this id : " + id));
+	public CarBrandViewDTO getOneCarById(Long id) {
+		final CarBrand carBrand = carBrandRepository.findById(id).orElseThrow(() -> new CarBrandNotFoundException("Car Brand not found with this id : " + id));
+		return CarBrandViewDTO.of(carBrand);
 	}
 
 	public void deleteOneCarById(Long id) {
@@ -43,9 +46,10 @@ public class CarBrandService {
 			return null;
 		}
 	}
-
-	public CarBrand addOneCar(CarBrand newCarBrand) {
-		return carBrandRepository.save(newCarBrand);
+	
+	public CarBrandViewDTO addOneCar(CarBrandCreateDTO carBrandCreateDTO) {
+		final CarBrand carBrand = carBrandRepository.save(new CarBrand(carBrandCreateDTO.getBrandName(), carBrandCreateDTO.getCountry()));
+		return CarBrandViewDTO.of(carBrand);
 	}
 	
 	

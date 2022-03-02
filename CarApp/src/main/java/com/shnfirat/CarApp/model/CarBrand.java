@@ -20,6 +20,13 @@ public class CarBrand {
 	String brandName;
 	
 	String country;
+
+	public CarBrand(String brandName, String country) {
+		this.brandName = brandName;
+		this.country = country;
+	}
+	
+	
 	
 	
 

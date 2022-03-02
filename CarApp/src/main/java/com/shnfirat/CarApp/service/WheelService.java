@@ -17,7 +17,6 @@ public class WheelService {
 		this.wheelRepository = wheelRepository;
 	}
 
-
 	public List<Wheel> getAllWheels() {
 		return wheelRepository.findAll();
 	}

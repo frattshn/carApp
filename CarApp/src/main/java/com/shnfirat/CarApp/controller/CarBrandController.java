@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.shnfirat.CarApp.dto.CarBrandCreateDTO;
+import com.shnfirat.CarApp.dto.CarBrandViewDTO;
 import com.shnfirat.CarApp.model.CarBrand;
 import com.shnfirat.CarApp.service.CarBrandService;
 
@@ -25,12 +27,12 @@ public class CarBrandController {
 	}
 	
 	@GetMapping
-	public List<CarBrand> getAllCars(){
+	public List<CarBrandViewDTO> getAllCars(){
 		return carBrandService.getAllCars();
 	}
 	
 	@GetMapping("/{id}")
-	public CarBrand getOneCarById(@PathVariable Long id) {
+	public CarBrandViewDTO getOneCarById(@PathVariable Long id) {
 		return carBrandService.getOneCarById(id);
 	}
 	
@@ -45,8 +47,8 @@ public class CarBrandController {
 	}
 	
 	@PostMapping("/add")
-	public CarBrand addOneCar(@RequestBody CarBrand newCarBrand) {
-		return carBrandService.addOneCar(newCarBrand);
+	public CarBrandViewDTO addOneCar(@RequestBody CarBrandCreateDTO carBrandCreateDTO) {
+		return carBrandService.addOneCar(carBrandCreateDTO);
 	}
 
 }
