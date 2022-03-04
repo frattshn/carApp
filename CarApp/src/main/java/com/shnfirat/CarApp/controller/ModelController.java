@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.shnfirat.CarApp.model.Model;
+import com.shnfirat.CarApp.dto.ModelCreateDTO;
+import com.shnfirat.CarApp.dto.ModelUpdateDTO;
+import com.shnfirat.CarApp.dto.ModelViewDTO;
 import com.shnfirat.CarApp.service.ModelService;
 
 @RestController
@@ -26,18 +28,18 @@ public class ModelController {
 	
 	
 	@GetMapping
-	public List<Model> getAllModels(){
+	public List<ModelViewDTO> getAllModels(){
 		return modelService.getAllModels();
 	}
 	
 	@GetMapping("/{id}")
-	public Model getOneModelById(@PathVariable Long id) {
+	public ModelViewDTO getOneModelById(@PathVariable Long id) {
 		return modelService.getOneModelById(id);
 	}
 	
 	@PutMapping("/{id}")
-	public Model updateOneModelById(@PathVariable Long id, @RequestBody Model newModel) {
-		return modelService.updateOneModelById(id, newModel);
+	public ModelViewDTO updateOneModelById(@PathVariable Long id, @RequestBody ModelUpdateDTO modelUpdateDTO) {
+		return modelService.updateOneModelById(id, modelUpdateDTO);
 	}
 	
 	@DeleteMapping("/{id}")
@@ -46,8 +48,8 @@ public class ModelController {
 	}
 	
 	@PostMapping("/add")
-	public Model addOneModel(@RequestBody Model addModel) {
-		return modelService.addOneModel(addModel);
+	public ModelViewDTO addOneModel(@RequestBody ModelCreateDTO modelCreateDTO) {
+		return modelService.addOneModel(modelCreateDTO);
 	}
 	
 	

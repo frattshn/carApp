@@ -29,9 +29,6 @@ public class CarBrandService {
 		return CarBrandViewDTO.of(carBrand);
 	}
 
-	public void deleteOneCarById(Long id) {
-		carBrandRepository.deleteById(id);
-	}
 
 	public CarBrandViewDTO updateOneUserById(Long id, CarBrandUpdateDTO carBrandUpdateDTO) {
 		final CarBrand carBrand = carBrandRepository.findById(id).orElseThrow(() -> new CarBrandNotFoundException("Car Brand Not Found!"));
@@ -40,6 +37,10 @@ public class CarBrandService {
 		
 		final CarBrand updatedCarBrand = carBrandRepository.save(carBrand);
 		return CarBrandViewDTO.of(updatedCarBrand);
+	}
+	
+	public void deleteOneCarById(Long id) {
+		carBrandRepository.deleteById(id);
 	}
 	
 	public CarBrandViewDTO addOneCar(CarBrandCreateDTO carBrandCreateDTO) {

@@ -15,9 +15,11 @@ import org.hibernate.annotations.OnDeleteAction;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@NoArgsConstructor
 @Table(name = "Model")
 public class Model {
 	
@@ -34,5 +36,14 @@ public class Model {
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JsonIgnore
 	CarBrand carBrand;
+
+
+	public Model(String modelName, CarBrand carBrand) {
+		this.modelName = modelName;
+		this.carBrand = carBrand;
+	}
+	
+	
+	
 	
 }
