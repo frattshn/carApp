@@ -46,7 +46,7 @@ public class CarBrandController {
 		carBrandService.deleteOneCarById(id);
 	}
 	
-	@PostMapping("/add")
+	@PostMapping
 	public CarBrandViewDTO addOneCar(@RequestBody CarBrandCreateDTO carBrandCreateDTO) {
 		return carBrandService.addOneCar(carBrandCreateDTO);
 	}

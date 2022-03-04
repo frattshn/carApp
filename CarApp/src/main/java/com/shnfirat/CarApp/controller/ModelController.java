@@ -47,7 +47,7 @@ public class ModelController {
 		modelService.deleteOneModelById(id);
 	}
 	
-	@PostMapping("/add")
+	@PostMapping
 	public ModelViewDTO addOneModel(@RequestBody ModelCreateDTO modelCreateDTO) {
 		return modelService.addOneModel(modelCreateDTO);
 	}
